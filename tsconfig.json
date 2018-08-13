@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src/app",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "skipLibCheck": true
+    },
+    "include": [
+        "./src/app/**/*"
+    ],
+    "exclude": [
+        "./node_modules"
+    ]
+}

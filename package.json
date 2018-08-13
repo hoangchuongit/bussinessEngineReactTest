@@ -1,0 +1,48 @@
+{
+    "name": "bussiness-engine-react-test",
+    "version": "1.0.0",
+    "description": "ReactJS interview test of Bussiness Engine",
+    "main": "webpack.config.js",
+    "scripts": {
+        "dev": "webpack-dev-server --progress --profile --colors --env dev --config ./webpack.config.dev.js --open",
+        "tslint": "tslint --project tsconfig.json --format stylish"
+    },
+    "author": "Chuong.Hoang",
+    "license": "ISC",
+    "dependencies": {
+        "firebase": "^5.3.1",
+        "jquery": "^3.3.1",
+        "lodash": "^4.17.10",
+        "moment": "^2.22.2",
+        "react": "^16.4.2",
+        "react-bootstrap": "^0.32.1",
+        "react-dom": "^16.4.2",
+        "react-loadable": "^5.4.0",
+        "react-router": "^4.3.1",
+        "react-router-dom": "^4.3.1",
+        "tslint": "^5.11.0",
+        "tslint-react": "^3.6.0"
+    },
+    "devDependencies": {
+        "@types/jquery": "^3.3.5",
+        "@types/lodash": "^4.14.116",
+        "@types/moment": "^2.13.0",
+        "@types/react": "^16.4.7",
+        "@types/react-bootstrap": "^0.32.11",
+        "@types/react-dom": "^16.0.6",
+        "@types/react-loadable": "^5.4.1",
+        "@types/react-router": "^4.0.30",
+        "@types/react-router-dom": "^4.3.0",
+        "awesome-typescript-loader": "^5.2.0",
+        "clean-webpack-plugin": "^0.1.19",
+        "copy-webpack-plugin": "^4.5.2",
+        "css-loader": "^1.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "style-loader": "^0.21.0",
+        "typescript": "^3.0.1",
+        "webpack": "^4.16.3",
+        "webpack-cli": "^2.1.5",
+        "webpack-dev-server": "^3.1.5",
+        "webpack-merge": "^4.1.4"
+    }
+}
