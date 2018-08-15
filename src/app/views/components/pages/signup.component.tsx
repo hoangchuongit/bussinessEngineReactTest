@@ -34,20 +34,25 @@ export default class Login extends React.Component {
                 </div>
                 <div className="content">
                     <form className="login-form">
-                        <h3 className="form-title">Sign In</h3>
+                        <h3 className="form-title">Sign Up</h3>
+                        <FormGroup controlId="fullName">
+                            <FormControl autoFocus type="text" placeholder="Full Name" />
+                        </FormGroup>
                         <FormGroup controlId="email">
-                            <FormControl autoFocus type="email" placeholder="Email" />
+                            <FormControl type="email" placeholder="Email" />
+                        </FormGroup>
+                        <FormGroup controlId="address">
+                            <FormControl type="text" placeholder="Address" />
                         </FormGroup>
                         <FormGroup controlId="password">
                             <FormControl type="password" placeholder="Password" />
                         </FormGroup>
+                        <FormGroup controlId="rpassword">
+                            <FormControl type="password" placeholder="Re-type Your Password" />
+                        </FormGroup>
                         <div className="form-actions text-center">
-                            <Button type="submit" className="btn btn-submit uppercase">Login</Button>
-                        </div>
-                        <div className="create-account">
-                            <p> Don't have an account yet ?&nbsp;
-                                <a href="javascript:;" id="register-btn"> Create an account </a>
-                            </p>
+                            <Button type="button" className="btn uppercase pull-left">Back</Button>
+                            <Button type="submit" className="btn btn-submit uppercase pull-right">Submit</Button>
                         </div>
                     </form>
                 </div>

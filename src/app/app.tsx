@@ -6,7 +6,9 @@ import * as Loadable from "react-loadable";
 import "app.css";
 import loading from "./views/components/loading.component";
 
-const Navbar = Loadable({ loader: () => import("./views/components/containers/navbar"), loading });
+// const Navbar = Loadable({ loader: () => import("./views/components/containers/navbar"), loading });
+const Login = Loadable({ loader: () => import("./views/components/pages/login.component"), loading });
+const Signup = Loadable({ loader: () => import("./views/components/pages/signup.component"), loading });
 const Home = Loadable({ loader: () => import("./views/components/home"), loading });
 const About = Loadable({ loader: () => import("./views/components/about"), loading });
 const News = Loadable({ loader: () => import("./views/components/news"), loading });
@@ -17,10 +19,12 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Navbar />
+          {/* <Navbar /> */}
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/news" component={News} />
+          <Route path="/signin" component={Login} />
+          <Route path="/signup" component={Signup} />
         </div>
       </Router>
     );

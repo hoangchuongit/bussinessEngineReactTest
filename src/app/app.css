@@ -141,6 +141,9 @@
 				cssload-opa 4.7225s ease-in-out infinite alternate;
 }
 
+.uppercase {
+    text-transform: uppercase!important; }
+
 @keyframes cssload-rota {
 		from { }
 		to { transform: rotate(360deg); }
