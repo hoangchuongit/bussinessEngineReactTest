@@ -1,0 +1,30 @@
+.page-404 {
+    overflow-x: hidden;
+    background-color: #fafafa;
+}
+
+.page-404 .content {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.page-404 .content .number {
+    position: relative;
+    top: 35px;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #7bbbd6;
+    text-align: right;
+    letter-spacing: -7px;
+    line-height: 128px;
+    font-size: 128px;
+    font-weight: 300;
+}
+
+.page-404 .content .details {
+    padding-top: 0;
+    text-align: left;
+    margin-left: 40px;
+    display: inline-block;
+}

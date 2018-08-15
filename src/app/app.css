@@ -142,7 +142,11 @@
 }
 
 .uppercase {
-    text-transform: uppercase!important; }
+	text-transform: uppercase!important; }
+
+.font-red {
+	color: #e7505a!important;
+}
 
 @keyframes cssload-rota {
 		from { }
