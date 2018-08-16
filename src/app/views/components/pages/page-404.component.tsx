@@ -20,7 +20,7 @@ export default class Page404 extends React.Component {
                     <div className="details">
                         <h3>Oops! You're lost.</h3>
                         <p> We can not find the page you're looking for.<br/>
-                        <a href="/">Return home!</a></p>
+                        <a href="/home">Return home!</a></p>
                     </div>
                 </Col>
             </Row>

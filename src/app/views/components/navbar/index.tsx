@@ -15,7 +15,7 @@ export default class CustomNavbar extends React.Component {
         <div className="page-header-top">
           <div className="container">
             <div className="page-logo">
-              <Link to="/">
+              <Link to="/home">
                 <Image src="assets/img/logo.png" className="logo-default" />
               </Link>
             </div>
@@ -38,7 +38,7 @@ export default class CustomNavbar extends React.Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight bsStyle="pills" activeKey={2}>
-                <NavItem eventKey={1} href="/">
+                <NavItem eventKey={1} href="/home">
                   Home
                 </NavItem>
                 <NavItem eventKey={2} href="/calendar">
