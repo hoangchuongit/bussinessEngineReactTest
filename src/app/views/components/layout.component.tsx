@@ -11,7 +11,7 @@ export default class Layout extends React.Component {
         setTimeout(() => {
             const $loadingContainer = $(".cssload-pgloading")[0];
             $loadingContainer.classList.add("cssload-pgloading-inative");
-        }, 200);
+        }, 0);
     }
 
     render() {
@@ -28,11 +28,7 @@ export default class Layout extends React.Component {
                     </div>
                 </div>
                 <Navbar />
-                <div className="container-fluid">
-                    <div className="page-content">
-                        {this.props.children}
-                    </div>
-                </div>
+                {this.props.children}
             </div>
         )
     }
