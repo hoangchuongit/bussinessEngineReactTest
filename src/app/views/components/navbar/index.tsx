@@ -23,8 +23,8 @@ export default class CustomNavbar extends React.Component {
               <ul className="nav navbar-nav pull-right">
                 <li className="dropdown dropdown-user dropdown-dark">
                   <a href="javascript:;" className="dropdown-toggle">
-                    <Image src="assets/img/person-1.jpg" className="img-circle" />
-                    <span className="username username-hide-mobile">Nick</span>
+                    <Image src="assets/img/mine.jpg" className="img-circle" />
+                    <span className="username username-hide-mobile">Chuong</span>
                   </a>
                 </li>
               </ul>
