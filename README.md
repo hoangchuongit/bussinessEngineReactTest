@@ -1,5 +1,4 @@
 # Bussiness Engine - React Test
-ReactJS interview test of Bussiness Engine
 This is Booking System Demo with React, Calendar, Recurring Event
 
 ## Feature

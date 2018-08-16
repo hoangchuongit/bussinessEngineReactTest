@@ -4,10 +4,31 @@ import Layout from "../layout.component";
 import "./home.css";
 
 export default class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+
+  componentDidMount() {
+    const $homeContent = $(".page-content")[0];
+    $homeContent.classList.add("home-content");
+  }
+
+
+  componentWillUnmount() {
+    const $homeContent = $(".page-content")[0];
+    $homeContent.classList.remove("home-content");
+  }
+
   render() {
     return (
       <Layout>
-        <Grid>
+        <Grid className="home-content">
           <Jumbotron>
             <h2>Welcome to Bussiness Engine - React Test</h2>
             <p>This is Booking System Demo with React, Calendar, Recurring Event</p>
