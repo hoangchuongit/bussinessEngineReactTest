@@ -21,7 +21,7 @@ export default class CustomNavbar extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav pullRight bsStyle="pills" activeKey={1}>
+          <Nav pullRight bsStyle="pills" activeKey={4}>
             <NavItem eventKey={1} href="/">
               Home
             </NavItem>
@@ -30,6 +30,9 @@ export default class CustomNavbar extends React.Component {
             </NavItem>
             <NavItem eventKey={3} href="/news">
               News
+            </NavItem>
+            <NavItem eventKey={4} href="/calendar">
+              Calendar
             </NavItem>
           </Nav>
         </Navbar.Collapse>

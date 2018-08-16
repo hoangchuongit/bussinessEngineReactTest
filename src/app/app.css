@@ -141,6 +141,10 @@
 				cssload-opa 4.7225s ease-in-out infinite alternate;
 }
 
+.cssload-pgloading-inative .cssload-loadingwrap {
+	display: none;
+}
+
 .uppercase {
 	text-transform: uppercase!important; }
 

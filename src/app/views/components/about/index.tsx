@@ -1,11 +1,12 @@
 import * as React from "react"
 import { Grid, Col, Image } from "react-bootstrap";
+import Layout from "../layout.component";
 import "./about.css";
 
 export default class About extends React.Component {
   render() {
     return (
-      <div>
+      <Layout>
         <Image src="assets/img/dog-people.jpg" className="header-image" />
         <Grid>
           <Col xs={12} sm={8} smOffset={2}>
@@ -17,7 +18,7 @@ export default class About extends React.Component {
             <p>You better get your coat out, this is going to be a cold painting. That's the way I look when I get home late; black and blue. That's crazy. We're trying to teach you a technique here and how to use it.</p>
           </Col>
         </Grid>
-      </div>
+      </Layout>
     )
   }
 }

@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Grid, Row, Col, Image } from "react-bootstrap";
+import Layout from "../layout.component";
 import "./news.css";
 
 export default class News extends React.Component {
   render() {
     return (
-      <div>
+      <Layout>
         <Image src="assets/img/mountain-man.jpg" className="header-image" />
         <Grid>
           <h2>News</h2>
@@ -23,7 +24,7 @@ export default class News extends React.Component {
             </Col>
           </Row>
         </Grid>
-      </div>
+      </Layout>
     )
   }
 }
