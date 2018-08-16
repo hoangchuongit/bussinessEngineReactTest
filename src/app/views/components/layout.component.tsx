@@ -1,5 +1,6 @@
 import * as React from "react";
 import Navbar from "./navbar";
+import Footer from "./pages/footer.component";
 
 export default class Layout extends React.Component {
 
@@ -28,7 +29,10 @@ export default class Layout extends React.Component {
                     </div>
                 </div>
                 <Navbar />
-                {this.props.children}
+                <div className="page-content">
+                    {this.props.children}
+                </div>
+                <Footer />
             </div>
         )
     }

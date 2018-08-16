@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image, FormGroup, FormControl, Button } from "react-bootstrap";
 import "./login.css";
 
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
 
     componentWillMount() {
         $("body").addClass("login");

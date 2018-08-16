@@ -11,32 +11,47 @@ export default class CustomNavbar extends React.Component {
 
   render() {
     return (
-      <Navbar default collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to="/">
-              <Image src="assets/img/logo.png" className="logo" />
-            </Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav pullRight bsStyle="pills" activeKey={4}>
-            <NavItem eventKey={1} href="/">
-              Home
-            </NavItem>
-            <NavItem eventKey={2} href="/about">
-              About
-            </NavItem>
-            <NavItem eventKey={3} href="/news">
-              News
-            </NavItem>
-            <NavItem eventKey={4} href="/calendar">
-              Calendar
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <div className="page-header">
+        <div className="page-header-top">
+          <div className="container">
+            <div className="page-logo">
+              <Link to="/">
+                <Image src="assets/img/logo.png" className="logo-default" />
+              </Link>
+            </div>
+            <div className="top-menu">
+              <ul className="nav navbar-nav pull-right">
+                <li className="dropdown dropdown-user dropdown-dark">
+                  <a href="javascript:;" className="dropdown-toggle">
+                    <Image src="assets/img/person-1.jpg" className="img-circle" />
+                    <span className="username username-hide-mobile">Nick</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="page-header-menu">
+          <Navbar default collapseOnSelect>
+            <Navbar.Header>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav pullRight bsStyle="pills" activeKey={2}>
+                <NavItem eventKey={1} href="/">
+                  Home
+                </NavItem>
+                <NavItem eventKey={2} href="/calendar">
+                  Calendar
+                </NavItem>
+                <NavItem eventKey={3}>
+                  Logout
+                </NavItem>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </div>
+      </div>
     )
   }
 }
