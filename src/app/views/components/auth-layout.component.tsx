@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image } from "react-bootstrap";
-import "./login.css";
+import "./auth-layout.css";
 
 
 class AuthLayout extends React.Component {

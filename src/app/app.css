@@ -20,6 +20,10 @@ img {
 	vertical-align: middle;
 }
 
+.has-error .form-control {
+	border:  1px solid #e73d4a !important;
+}
+
 .cssload-pgloading {}
 
 .cssload-pgloading:after {

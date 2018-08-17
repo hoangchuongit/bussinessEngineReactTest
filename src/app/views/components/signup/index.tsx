@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { FormGroup, FormControl, Button } from "react-bootstrap";
-import AuthLayout from "./auth-layout.component";
-import "./login.css";
+import AuthLayout from "../auth-layout.component";
+import "../auth-layout.css";
 
 class Signup extends React.Component {
 

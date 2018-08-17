@@ -95,7 +95,7 @@
     color: #fff;
 }
 
-.login .content .create-account a {
+.login .content .create-account a, .signup-link {
     display: block;
     margin-top: 5px;
     color: #004C99;

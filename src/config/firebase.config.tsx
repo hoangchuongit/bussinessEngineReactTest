@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import * as firebase from "firebase";
 import { prodConfig } from "./firebase.config.prod";
 import { devConfig } from "./firebase.config.dev";
 
@@ -10,4 +10,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
-export const db = firebase.database();
+const databaseRef = firebase.database().ref();
+export const servicesRef = databaseRef.child("services");
+export const staffsRef = databaseRef.child("staffs");
+export const clientsRef = databaseRef.child("clients");
+export const appointmentsRef = databaseRef.child("appointments");
+export const authRef = firebase.auth();
