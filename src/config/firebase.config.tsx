@@ -10,6 +10,8 @@ if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }
 
+export const db = firebase.database();
+
 const databaseRef = firebase.database().ref();
 export const servicesRef = databaseRef.child("services");
 export const staffsRef = databaseRef.child("staffs");

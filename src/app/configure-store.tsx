@@ -1,8 +1,18 @@
+import { createStore, applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
 import createHistory from "history/createBrowserHistory";
-import { createStore } from "redux";
 import rootReducer from "../app/views/reducers";
 
 
 export const history = createHistory();
 
-export const store = createStore(rootReducer);
+const loggerMiddleware = createLogger();
+
+export const store = createStore(
+    rootReducer,
+    applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+    )
+);

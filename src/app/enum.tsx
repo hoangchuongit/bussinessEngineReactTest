@@ -1,3 +1,10 @@
+enum RequestStatus {
+    OK = 200,
+    Forbidden = 403,
+    NotFound = 404,
+    InternalServerError = 500
+}
+
 enum StorageItem {
     USER_NAME = "UserName",
     ACCESS_TOKEN = "AccessToken",
@@ -5,11 +12,7 @@ enum StorageItem {
     REFRESH_TOKEN = "RefreshToken"
 }
 
-enum NotificatonMessage {
-    ALL_FIELD_REQUIRED = "Please enter all fields required."
-}
-
 export {
-    StorageItem,
-    NotificatonMessage
+    RequestStatus,
+    StorageItem
 }

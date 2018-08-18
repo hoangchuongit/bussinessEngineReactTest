@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import AuthLayout from "../auth-layout.component";
 import { IState, UnState } from "./login.interface";
-import { NotificatonMessage } from "enum";
+import { MessagesConst, RoutesConst } from "../../../constants";
 
 import "../auth-layout.css";
 
@@ -25,14 +25,14 @@ class Login extends React.Component<{}, IState> {
                     <h3 className="form-title">Sign In</h3>
                     {showAlert && <Alert bsStyle="danger" className="text-center" 
                                          onDismiss={() => this.setState({...this.state, showAlert: false})}>
-                        <p>{ NotificatonMessage.ALL_FIELD_REQUIRED }</p>
+                        <p>{ MessagesConst.ALL_FIELD_REQUIRED }</p>
                     </Alert>}
                     <FormGroup controlId="email" className={errors.email && "has-error"}>
                         <FormControl autoFocus type="email"
-                            name="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={this.onChange}/>
+                                     name="email"
+                                     placeholder="Email"
+                                     value={email}
+                                     onChange={this.onChange}/>
                     </FormGroup>
                     <FormGroup controlId="password" className={errors.password && "has-error"}>
                         <FormControl type="password"
@@ -46,7 +46,7 @@ class Login extends React.Component<{}, IState> {
                     </div>
                     <div className="create-account">
                         <p> Don't have an account yet ?&nbsp;
-                            <Link className="signup-link" to="/signup">Create an account</Link>
+                            <Link className="signup-link" to={RoutesConst.SIGNUP}>Create an account</Link>
                         </p>
                     </div>
                 </Form>
@@ -56,6 +56,7 @@ class Login extends React.Component<{}, IState> {
 
     /**
      * @description function handle when enter to input
+     * @param e is event listener of dom
      * @author Chuong.Hoang
      */
     private onChange = e => {
@@ -66,12 +67,10 @@ class Login extends React.Component<{}, IState> {
     }
 
     /**
-     * @description function handle submit login form
+     * @description function check valid login form
      * @author Chuong.Hoang
      */
-    private onSubmit = e => {
-        e.preventDefault();
-
+    private isValid = () => {
         const { email, password, errors }  = this.state;
 
         errors.email = _.isEmpty(email);
@@ -84,6 +83,21 @@ class Login extends React.Component<{}, IState> {
             errors: errors,
             showAlert: showAlert
         });
+
+        if (showAlert) return false;
+        return true;
+    }
+
+    /**
+     * @description function handle submit login form
+     * @param e is event listener of dom
+     * @author Chuong.Hoang
+     */
+    private onSubmit = e => {
+        e.preventDefault();
+        if (this.isValid()) {
+
+        }
     }
 }
 

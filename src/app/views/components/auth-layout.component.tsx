@@ -4,19 +4,17 @@ import "./auth-layout.css";
 
 
 class AuthLayout extends React.Component {
-
-    public componentWillMount() {
-        $("body").addClass("login");
-    }
-
     constructor(props) {
         super(props);
+    }
+
+    public componentDidMount() {
+        $("body").addClass("login");
     }
 
     public componentWillReceiveProps() {
         $("body").addClass("login");
     }
-
 
     public componentWillUnmount() {
         $("body").removeClass("login");

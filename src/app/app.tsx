@@ -1,11 +1,13 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { Route, Switch, Redirect } from "react-router";
-import { ConnectedRouter } from "react-router-redux";
-import { store, history } from "./configure-store";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { history, store } from "./configure-store";
 import * as Loadable from "react-loadable";
+
+import { RoutesConst } from "./constants";
 import { StorageItem } from "enum";
+
 
 import "app.css";
 import loading from "views/components/loading.component";
@@ -19,30 +21,24 @@ const Calendar = Loadable({ loader: () => import("views/components/calendar"), l
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = sessionStorage.getItem(StorageItem.USER_NAME);
   const token = sessionStorage.getItem(StorageItem.ACCESS_TOKEN);
-  const auth = props => !user || !token ? <Redirect to="/signin" /> : <Component {...props} />;
+  const auth = props => !user || !token ? <Redirect to={RoutesConst.SIGNIN} /> : <Component {...props} />;
   return <Route {...rest} render={auth} />;
 };
 
-
-class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <div>
-            <Switch>
-              <Redirect from="/" exact to="/home" />
-              <Route path="/signin" component={Login} />
-              <Route path="/signup" component={Signup} />
-              <PrivateRoute exact path="/home" component={Home} />
-              <PrivateRoute path="/calendar" component={Calendar} />
-              <Route component={Page404} />
-            </Switch>
-          </div>
-        </ConnectedRouter>
-      </Provider>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('bussinessengine-root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <div>
+        <Switch>
+          <Redirect from="/" exact to={RoutesConst.HOME} />
+          <Route path={RoutesConst.SIGNIN} component={Login} />
+          <Route path={RoutesConst.SIGNUP} component={Signup} />
+          <PrivateRoute exact path={RoutesConst.HOME} component={Home} />
+          <PrivateRoute path={RoutesConst.CALENDAR} component={Calendar} />
+          <Route component={Page404} />
+        </Switch>
+      </div>
+    </Router>
+  </Provider>
+  , document.getElementById('bussinessengine-root')
+);
