@@ -29,23 +29,26 @@ class CustomNavbar extends React.Component<IDispatchFromProps, IState> {
 
     this.state = UnState;
 
-    ClientsController.GetClients().then(snapshot => {
-      const clients = snapshot.val();
-      const emailLogined = sessionStorage.getItem(StorageItem.USER_NAME);
-      let fullName = "";
+    let fullName = sessionStorage.getItem(StorageItem.FULL_NAME);
 
-      for (let key in clients) {
-        if (clients[key].email === emailLogined) {
-          fullName = clients[key].fullname;
-          break;
+    if (!fullName) {
+      ClientsController.GetClients().then(snapshot => {
+        const clients = snapshot.val();
+        const emailLogined = sessionStorage.getItem(StorageItem.USER_NAME);
+
+        for (let key in clients) {
+          if (clients[key].email === emailLogined) {
+            fullName = clients[key].fullname;
+            break;
+          }
         }
-      }
 
-      this.setState({
-        ...this.state,
-        fullName: fullName
-      })
-    });
+        this.setState({
+          ...this.state,
+          fullName: fullName
+        })
+      });
+    }
   }
 
   render() {
