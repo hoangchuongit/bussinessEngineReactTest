@@ -5,27 +5,22 @@ import "./home.css";
 
 export default class Home extends React.Component {
 
-  constructor(props) {
+  public constructor(props) {
     super(props);
-
-    this.state = {
-      email: "",
-      password: ""
-    };
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     const $homeContent = $(".page-content")[0];
     $homeContent.classList.add("home-content");
   }
 
 
-  componentWillUnmount() {
+  public componentWillUnmount() {
     const $homeContent = $(".page-content")[0];
     $homeContent.classList.remove("home-content");
   }
 
-  render() {
+  public render() {
     return (
       <Layout>
         <Grid className="home-content">

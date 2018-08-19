@@ -110,7 +110,9 @@ nav.navbar, .navbar-default {
     background-color: transparent;
   }
 
-  .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  .navbar-default .navbar-nav>li>.active, 
+  .navbar-default .navbar-nav>li>.active:focus, 
+  .navbar-default .navbar-nav>li>.active:hover {
     color: #f1f1f1 !important;
     background: #4E5966 !important;
     border-radius: 0px !important;

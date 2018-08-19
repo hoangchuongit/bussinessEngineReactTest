@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { AuthAction } from "../../actions";
-import { Navbar, Nav, NavItem, Image } from "react-bootstrap";
+import { Navbar, NavItem, Image } from "react-bootstrap";
 import "./navbar.css";
 
 interface IDispatchFromProps {
@@ -44,17 +44,21 @@ class CustomNavbar extends React.Component<IDispatchFromProps> {
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
-              <Nav pullRight bsStyle="pills" activeKey={2}>
-                <NavItem eventKey={1} href="/home">
-                  Home
-                </NavItem>
-                <NavItem eventKey={2} href="/calendar">
-                  Calendar
-                </NavItem>
-                <NavItem eventKey={3} onClick={() => this.props.actions.logoutAction()}>
+              <ul className="nav nav-pills navbar-nav navbar-right">
+                <li>
+                  <NavLink to="/home">
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/calendar">
+                    Calendar
+                  </NavLink>
+                </li>
+                <NavItem onClick={() => this.props.actions.logoutAction()}>
                   Logout
                 </NavItem>
-              </Nav>
+              </ul>
             </Navbar.Collapse>
           </Navbar>
         </div>
@@ -63,7 +67,7 @@ class CustomNavbar extends React.Component<IDispatchFromProps> {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return { actions: bindActionCreators(AuthAction, dispatch) }
 }
 
