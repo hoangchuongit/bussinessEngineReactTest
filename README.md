@@ -4,11 +4,11 @@ This is Booking System Demo with React, Calendar, Recurring Event
 ## Feature
 * Login, 
 * Signup
-* Book event
-* Recurring Event
-* Private Link
-* RealTime
 * Validation Form
+* Private Link
+* Book event (push code up soon)
+* Recurring Event (push code up soon)
+* RealTime Event (push code up soon)
 
 ## Technical
 * Firebase

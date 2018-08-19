@@ -23,12 +23,13 @@ export default class Calendar extends React.Component {
               defaultView={BigCalendar.Views.MONTH}
               scrollToTime={new Date(1970, 1, 1, 6)}
               defaultDate={new Date()}
-              onSelectEvent={event => alert(event.title)}
+              onSelectEvent={event => alert(event.title + `\n\n Edit event: I'll update soon`)}
               onSelectSlot={slotInfo =>
                 alert(
                   `selected slot: \n\nstart ${slotInfo.start.toLocaleString()} ` +
                   `\nend: ${slotInfo.end.toLocaleString()}` +
-                  `\naction: ${slotInfo.action}`
+                  `\naction: ${slotInfo.action}` +
+                  `\n\n Add event (has recurring event): I'll update soon`
                 )
               }
             />
