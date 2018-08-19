@@ -1,11 +1,18 @@
 import * as React from "react";
-import { Navbar, Nav, NavItem, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { AuthAction } from "../../actions";
+import { Navbar, Nav, NavItem, Image } from "react-bootstrap";
 import "./navbar.css";
 
-export default class CustomNavbar extends React.Component {
+interface IDispatchFromProps {
+  actions: typeof AuthAction;
+}
 
-  constructor(props) {
+class CustomNavbar extends React.Component<IDispatchFromProps> {
+
+  constructor(props: IDispatchFromProps) {
     super(props);
   }
 
@@ -44,7 +51,7 @@ export default class CustomNavbar extends React.Component {
                 <NavItem eventKey={2} href="/calendar">
                   Calendar
                 </NavItem>
-                <NavItem eventKey={3}>
+                <NavItem eventKey={3} onClick={() => this.props.actions.logoutAction()}>
                   Logout
                 </NavItem>
               </Nav>
@@ -55,3 +62,9 @@ export default class CustomNavbar extends React.Component {
     )
   }
 }
+
+function mapDispatchToProps (dispatch) {
+  return { actions: bindActionCreators(AuthAction, dispatch) }
+}
+
+export default connect(undefined, mapDispatchToProps)(CustomNavbar);

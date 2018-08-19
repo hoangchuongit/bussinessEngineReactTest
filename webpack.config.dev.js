@@ -7,8 +7,23 @@ module.exports = merge(require("./webpack.config"), {
     devtool: "source-map",
     output: {
         filename: "scripts/reacttest.[name].js",
-        chunkFilename: "scripts/reacttest.[id].chunk.js",
+        chunkFilename: "scripts/reacttest.[name].chunk.js",
         path: path.resolve(__dirname, "./build/dist")
+    },
+    optimization: {
+        runtimeChunk: {
+            name: "manifest"
+        },
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    priority: -20,
+                    chunks: "all"
+                }
+            }
+        }
     },
     devServer: {
         historyApiFallback: true,

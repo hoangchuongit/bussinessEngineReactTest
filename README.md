@@ -8,12 +8,14 @@ This is Booking System Demo with React, Calendar, Recurring Event
 * Recurring Event
 * Private Link
 * RealTime
+* Validation Form
 
 ## Technical
 * Firebase
 * React - ES6
 * React redux
 * [React-big-calendar](https://github.com/arecvlohe/rbc-starter)
+* Lazy loading
 
 ## Run examples locally
 ```

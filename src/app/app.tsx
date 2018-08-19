@@ -8,7 +8,6 @@ import * as Loadable from "react-loadable";
 import { RoutesConst } from "./constants";
 import { StorageItem } from "enum";
 
-
 import "app.css";
 import loading from "views/components/loading.component";
 
@@ -20,8 +19,8 @@ const Calendar = Loadable({ loader: () => import("views/components/calendar"), l
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = sessionStorage.getItem(StorageItem.USER_NAME);
-  const token = sessionStorage.getItem(StorageItem.ACCESS_TOKEN);
-  const auth = props => !user || !token ? <Redirect to={RoutesConst.SIGNIN} /> : <Component {...props} />;
+  const uid = sessionStorage.getItem(StorageItem.UID);
+  const auth = props => !user || !uid ? <Redirect to={RoutesConst.SIGNIN} /> : <Component {...props} />;
   return <Route {...rest} render={auth} />;
 };
 

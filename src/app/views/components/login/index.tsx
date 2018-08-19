@@ -1,16 +1,25 @@
 import * as React from "react";
 import * as _ from "lodash";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import AuthLayout from "../auth-layout.component";
+
+import { AuthAction } from "../../actions";
 import { IState, UnState } from "./login.interface";
 import { MessagesConst, RoutesConst } from "../../../constants";
 
 import "../auth-layout.css";
 
-class Login extends React.Component<{}, IState> {
+interface IDispatchFromProps {
+    actions: typeof AuthAction;
+}
 
-    public constructor(props) {
+class Login extends React.Component<IDispatchFromProps, IState> {
+
+    public constructor(props: IDispatchFromProps) {
         super(props);
         this.state = UnState;
     }
@@ -23,23 +32,23 @@ class Login extends React.Component<{}, IState> {
             <AuthLayout>
                 <Form className="login-form" onSubmit={this.onSubmit} noValidate={true}>
                     <h3 className="form-title">Sign In</h3>
-                    {showAlert && <Alert bsStyle="danger" className="text-center" 
-                                         onDismiss={() => this.setState({...this.state, showAlert: false})}>
-                        <p>{ MessagesConst.ALL_FIELD_REQUIRED }</p>
+                    {showAlert && <Alert bsStyle="danger" className="text-center"
+                        onDismiss={() => this.setState({ ...this.state, showAlert: false })}>
+                        <p>{MessagesConst.ALL_FIELD_REQUIRED}</p>
                     </Alert>}
                     <FormGroup controlId="email" className={errors.email && "has-error"}>
                         <FormControl autoFocus type="email"
-                                     name="email"
-                                     placeholder="Email"
-                                     value={email}
-                                     onChange={this.onChange}/>
+                            name="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={this.onChange} />
                     </FormGroup>
                     <FormGroup controlId="password" className={errors.password && "has-error"}>
                         <FormControl type="password"
-                                     name="password" 
-                                     placeholder="Password" 
-                                     value={password}
-                                     onChange={this.onChange}/>
+                            name="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={this.onChange} />
                     </FormGroup>
                     <div className="form-actions text-center">
                         <Button type="submit" className="btn btn-submit uppercase">Login</Button>
@@ -71,7 +80,7 @@ class Login extends React.Component<{}, IState> {
      * @author Chuong.Hoang
      */
     private isValid = () => {
-        const { email, password, errors }  = this.state;
+        const { email, password, errors } = this.state;
 
         errors.email = _.isEmpty(email);
         errors.password = _.isEmpty(password);
@@ -96,9 +105,14 @@ class Login extends React.Component<{}, IState> {
     private onSubmit = e => {
         e.preventDefault();
         if (this.isValid()) {
-
+            const { email, password } = this.state;
+            this.props.actions.loginAction(email, password);
         }
     }
 }
 
-export default Login;
+function mapDispatchToProps (dispatch) {
+    return { actions: bindActionCreators(AuthAction, dispatch) }
+}
+
+export default connect(undefined, mapDispatchToProps)(Login);

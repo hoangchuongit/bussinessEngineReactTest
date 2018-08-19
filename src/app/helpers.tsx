@@ -3,7 +3,7 @@
  * @param email email need to check
  * @author Chuong.Hoang
  */
-export function isEmailValid (email) {
+export const isEmailValid = (email) => {
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regex.test(email);
 }
@@ -13,7 +13,8 @@ export function isEmailValid (email) {
  * @param password password need to check
  * @author Chuong.Hoang
  */
-export function isPasswordValid (password) {
+export const isPasswordValid = (password) => {
     if (password.length < 6 || password.length > 32) return false;
     return true;
 }
+  

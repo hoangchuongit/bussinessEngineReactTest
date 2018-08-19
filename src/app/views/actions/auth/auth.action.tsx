@@ -1,52 +1,65 @@
-import { AUTH_ACTION_TYPES } from "./auth.action-type";
-import { AuthController } from "../../../controllers";
-import { history } from '../../../configure-store';
+import { history } from "configure-store";
+import { StorageItem } from "enum";
+import { RoutesConst } from "../../../constants";
+import { AUTH_ACTION_TYPES, LOGIN_ACTION } from "./auth.action-type";
+import { AuthController, ClientsController } from "controllers";
+
+const SetUid = (uid: string): LOGIN_ACTION => {
+    return {
+        type: AUTH_ACTION_TYPES.SET_UID,
+        uid
+    };
+};
 
 const loginAction = (email: string, password: string) => {
     return dispatch => {
-        dispatch(request({ email }));
-
         AuthController.Login(email, password)
-            .then(
-                user => {
-                    dispatch(success(user));
-                    history.push('/');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
+            .then(res => {
+                if (res && res.user && res.user.uid) {
+                    dispatch(SetUid(res.user.uid));
+                    sessionStorage.setItem(StorageItem.USER_NAME, email);
+                    sessionStorage.setItem(StorageItem.UID, res.user.uid);
+                    sessionStorage.setItem(StorageItem.REFRESH_TOKEN, res.user.refreshToken);
+                    history.push(RoutesConst.HOME);
+                } else {
+                    history.push(RoutesConst.SIGNIN);
                 }
-            );
+                console.log(res);
+            });
     };
-
-    function request(user) { return { type: AUTH_ACTION_TYPES.LOGIN_REQUEST, user } }
-    function success(user) { return { type: AUTH_ACTION_TYPES.LOGIN_SUCCESS, user } }
-    function failure(error) { return { type: AUTH_ACTION_TYPES.LOGIN_FAILURE, error } }
 }
 
 const logoutAction = () => {
-    AuthController.Signout();
-    return { type: AUTH_ACTION_TYPES.LOGOUT };
+    return dispatch => {
+        AuthController.Signout().then(() => {
+            dispatch(SetUid(null));
+            sessionStorage.removeItem(StorageItem.USER_NAME);
+            sessionStorage.removeItem(StorageItem.UID);
+            sessionStorage.removeItem(StorageItem.REFRESH_TOKEN);
+            history.push(RoutesConst.SIGNIN);
+        });
+    }
 }
 
-const signupAction = (email: string, password: string) => {
+const signupAction = (email: string, password: string, fullname: string, address: string) => {
     return dispatch => {
-        dispatch(request(email));
-
-        AuthController.Signup(email, password)
-            .then(
-                user => {
-                    dispatch(success(user));
-                    history.push('/login');
-                },
-                error => {
-                    dispatch(failure(error.toString()));
-                }
-            );
+        AuthController.Signup(email, password).then(res => {
+            if (res && res.user && res.user.uid) {
+                
+                dispatch(SetUid(res.user.uid));
+                
+                sessionStorage.setItem(StorageItem.USER_NAME, email);
+                sessionStorage.setItem(StorageItem.UID, res.user.uid);
+                sessionStorage.setItem(StorageItem.REFRESH_TOKEN, res.user.refreshToken);
+                
+                ClientsController.CreateUser(res.user.uid, email, fullname, address).then(() => {
+                    history.push(RoutesConst.HOME);
+                });
+            } else {
+                history.push(RoutesConst.SIGNUP);
+            }
+        });
     };
-
-    function request(user) { return { type: AUTH_ACTION_TYPES.REGISTER_REQUEST, user } }
-    function success(user) { return { type: AUTH_ACTION_TYPES.REGISTER_SUCCESS, user } }
-    function failure(error) { return { type: AUTH_ACTION_TYPES.REGISTER_FAILURE, error } }
 }
 
 export default {

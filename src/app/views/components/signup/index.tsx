@@ -1,17 +1,26 @@
 import * as React from "react";
 import * as _ from "lodash";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+
 import { Form, FormGroup, FormControl, Button, Alert } from "react-bootstrap";
 import AuthLayout from "../auth-layout.component";
+
+import { AuthAction } from "../../actions";
 import { IState, UnState } from "./signup.interface";
 import { MessagesConst, RoutesConst } from "../../../constants";
-import { isEmailValid, isPasswordValid } from "../../../helpers";
+import { isEmailValid, isPasswordValid } from "helpers";
 
 import "../auth-layout.css";
 
-class Signup extends React.Component<{}, IState> {
+interface IDispatchFromProps {
+    actions: typeof AuthAction;
+}
 
-    public constructor (prop) {
+class Signup extends React.Component<IDispatchFromProps, IState> {
+
+    public constructor (prop: IDispatchFromProps) {
         super(prop);
         this.state = UnState;
     }
@@ -139,9 +148,14 @@ class Signup extends React.Component<{}, IState> {
     private onSubmit = e => {
         e.preventDefault();
         if (this.isValid()) {
-
+            const { email, password, fullname, address } = this.state;
+            this.props.actions.signupAction(email, password, fullname, address);
         }
     }
 }
 
-export default Signup;
+function mapDispatchToProps (dispatch) {
+    return { actions: bindActionCreators(AuthAction, dispatch) }
+}
+
+export default connect(undefined, mapDispatchToProps)(Signup);

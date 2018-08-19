@@ -10,8 +10,8 @@ class Clients implements IClients {
      * @param email client's email
      * @author Chuong.Hoang
      */
-    public CreateUser(id: string, username: string, email: string, fullname: string, address: string): Promise<any> {
-        return db.ref(`clients/${id}`).set({ username, email, fullname, address })
+    public CreateUser(id: string, email: string, fullname: string, address: string): Promise<any> {
+        return db.ref(`clients/${id}`).set({ email, fullname, address })
             .then(success)
             .catch(error);
     }
