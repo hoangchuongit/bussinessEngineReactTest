@@ -8,6 +8,7 @@ enum RequestStatus {
 
 enum StorageItem {
     USER_NAME = "UserName",
+    FULL_NAME = "FullName",
     UID = "Uid",
     ACCESS_TOKEN = "AccessToken",
     EXPIRES_IN = "ExpiresIn",

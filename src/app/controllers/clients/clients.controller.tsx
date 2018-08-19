@@ -20,7 +20,7 @@ class Clients implements IClients {
      * Get client list.
      * @author Chuong.Hoang
      */
-    public GetUsers(): Promise<any> {
+    public GetClients(): Promise<any> {
         return db.ref('clients').once('value')
             .then(success)
             .catch(error);

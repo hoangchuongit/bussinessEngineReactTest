@@ -1,22 +1,57 @@
 import * as React from "react";
+import * as _ from "lodash";
 import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { AuthAction } from "../../actions";
 import { Navbar, NavItem, Image } from "react-bootstrap";
+import { ClientsController } from "../../../controllers";
+import { StorageItem } from "enum";
+
 import "./navbar.css";
 
 interface IDispatchFromProps {
   actions: typeof AuthAction;
 }
 
-class CustomNavbar extends React.Component<IDispatchFromProps> {
+interface IState {
+  fullName: string
+};
+
+const UnState: IState = {
+  fullName: ""
+}
+
+class CustomNavbar extends React.Component<IDispatchFromProps, IState> {
 
   constructor(props: IDispatchFromProps) {
     super(props);
+
+    this.state = UnState;
+
+    ClientsController.GetClients().then(snapshot => {
+      const clients = snapshot.val();
+      const emailLogined = sessionStorage.getItem(StorageItem.USER_NAME);
+      let fullName = "";
+
+      for (let key in clients) {
+        if (clients[key].email === emailLogined) {
+          fullName = clients[key].fullname;
+          break;
+        }
+      }
+
+      this.setState({
+        ...this.state,
+        fullName: fullName
+      })
+    });
   }
 
   render() {
+
+    const { fullName } = this.state;
+
     return (
       <div className="page-header">
         <div className="page-header-top">
@@ -30,8 +65,8 @@ class CustomNavbar extends React.Component<IDispatchFromProps> {
               <ul className="nav navbar-nav pull-right">
                 <li className="dropdown dropdown-user dropdown-dark">
                   <a href="javascript:;" className="dropdown-toggle">
-                    <Image src="assets/img/mine.jpg" className="img-circle" />
-                    <span className="username username-hide-mobile">Chuong</span>
+                    <Image src="assets/img/no_avatar.png" className="img-circle" />
+                    <span className="username username-hide-mobile">{fullName}</span>
                   </a>
                 </li>
               </ul>
